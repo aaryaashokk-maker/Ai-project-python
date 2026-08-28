@@ -1,0 +1,34 @@
+import random
+import colorama
+from colorama import *
+colorama.init(autoreset=True)
+places = {
+    "beach": ["mariana beach", "maldives", "bali", "bondi beach", "copacabana", "waikiki beach", "whitehaven beach", "siargao island", "navagio beach", "seven mile beach"],
+    "mountaion":["mount everest","mount kilimanjaro","mount fuji","mount denali","mount elbrus","mount aconcagua","mount matterhorn","mount blanc","mount olympus","mount shasta","himalayas"],
+    "city":["new york city","los angeles","chicago","houston","phoenix","philadelphia","san antonio","san diego","dallas","san jose","lusaka","tokyo","paris","london","berlin","madrid","rome","moscow","beijing","sydney", "cape town","rio de janeiro","dubai","singapore","hong kong","bangkok","istanbul","seoul","toronto","vancouver","melbourne","auckland","chennai","delhi","mumbai","kolkata","bengaluru","hyderabad","chennai","pune","ahmedabad","jaipur","lucknow","kanpur","nagpur","indore","bhopal","patna","ludhiana","agra","varanasi","amritsar","jodhpur","udaipur"]
+}
+jokes = [
+    "Why did the tomato turn red? Because it saw the salad dressing!", "Why don't scientists trust atoms? Because they make up everything!", "What do you call a fake noodle? An impasta!",
+     "Why did the scarecrow win an award? Because he was outstanding in his field!", "Why did the bicycle fall over? Because it was two-tired!", "What do you call a bear with no teeth? A gummy bear!", "Why did the chicken cross the playground? To get to the other slide!", "Why did the math book look sad? Because it had too many problems!", "What do you call a snowman with a six-pack? An abdominal snowman!", "Why did the coffee file a police report? It got mugged!"]
+def recommend():
+    in1re = input("Where do you want to go to a city, beach or mountain?")
+    if in1re.lower() in places:
+        print(Fore.GREEN + f"Try : {random.choice(places[in1re])}")
+    else:
+        print(Fore.RED + "Invalid choice!")
+def packing():
+    placea = input("Where are you going : ")
+    days = int(input("How many days : "))
+    print(Fore.BLUE + f"Packing for {days} in {placea}")
+while True:
+    choice = input("What do you want to do?Destination, Paking, Joke or a destination? (Type 'exit' to quit): ")
+    if choice.lower() == "destination":
+        recommend()
+    elif choice.lower() == "packing":
+        packing()
+    elif choice.lower() == "joke":
+        print(random.choice(jokes))
+    elif choice.lower() == "exit":
+        break
+    else:
+        print(Fore.RED + "Invalid choice!")
