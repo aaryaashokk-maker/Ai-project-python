@@ -1,0 +1,49 @@
+from textblob import TextBlob
+import colorama
+from colorama import Fore
+from tkinter import *
+colorama.init()
+screen1 = Tk()
+screen2 = Tk()
+screen1.title("Sentiment AI ")
+screen2.title("Sentiment AI results")
+screen1.geometry("400x450")
+screen2.geometry("400x400")
+screen1.configure(bg="black")
+screen2.configure(bg="black")
+arrpos = 0
+arrneg = 0
+arrneu = 0
+l1 = Text(screen1, bg="black", fg="white")
+l1.pack()
+l2 = Text(screen2, bg="black", fg="white")
+l1.insert( END, "Enter your text below to check the sentiment of your text")
+l2.pack()
+def check():
+    se1l = se1.get()
+    l1val = "Enter your text below to check the sentiment of your text"
+    global arrpos
+    global arrneg
+    global arrneu
+    l1.insert( END, f"{l1val}\n{se1l}")
+    l2.insert( END, f"{l1val}\n{se1l}")
+    a = TextBlob(se1l)
+    b = a.sentiment.polarity
+    if b > 0:
+        l1.insert(END, f"\n Your sentence is positive with a polarity of {b}!")
+        arrpos = arrpos + 1
+        l2.insert(END, f"\n Positive: {arrpos}, Negative: {arrneg}, Neutral: {arrneu}!")
+    elif b < 0:
+        l1.insert(END, f"\n Your sentence is negative with a polarity of {b}!")
+        arrneg = arrneg + 1
+        l2.insert(END, f"\n Positive: {arrpos}, Negative: {arrneg}, Neutral: {arrneu}!")
+    else:
+        l1.insert(END, f"\n Your sentence is neutral with a polarity of {b}!")
+        arrneu = arrneu + 1
+        l2.insert(END, f"\n Positive: {arrpos}, Negative: {arrneg}, Neutral: {arrneu}!")
+se1 = Entry(screen1, bg="white", fg="black") 
+se1.pack() 
+seb1 = Button(screen1, text = "Send to process",command = check) 
+seb1.pack() 
+screen1.mainloop()
+screen2.mainloop()
