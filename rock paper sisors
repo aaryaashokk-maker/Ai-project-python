@@ -1,0 +1,50 @@
+import random
+import tkinter
+sc1 = tkinter.Tk()
+sc1.title("Rock paper scissors AI")
+
+sc1.config(bg="lightblue")
+l1 = tkinter.Label(sc1, text="1: rock, 2: paper, 3: scissors \n Enter your choice below to play against the AI", bg="lightblue")
+l1.pack()
+input1 = tkinter.Entry(sc1, bg="white", fg="black")
+input1.pack()
+def process():
+    input1val = input1.get()
+    aiop = random.randint(1, 3)
+    if input1val == "1" and aiop == 2:
+        l2.config( text="You chose rock and the AI chose paper. You lost!")
+        l2.pack()
+    elif input1val == "1" and aiop == 3:
+        l2.config( text="You chose rock and the AI chose scissors. You won!")
+        l2.pack()
+    elif input1val == "2" and aiop == 1:
+        l2.config( text="You chose paper and the AI chose rock. You won!")
+        l2.pack()
+    elif input1val == "3" and aiop == 1:
+        l2.config( text="You chose scissors and the AI chose rock. You lost!")
+        l2.pack()
+    elif input1val == "1" and aiop == 1:
+        l2.config( text="You chose rock and the AI chose rock. It's a tie!")
+        l2.pack()
+        #ew
+    elif input1val == "2" and aiop == 3:
+        l2.config( text="You chose paper and the AI chose scissors. You lost!")
+        l2.pack()
+    elif input1val == "2" and aiop == 2:
+        l2.config( text="You chose paper and the AI chose paper. It's a tie!")
+        l2.pack()
+    elif input1val == "3" and aiop == 2:
+        l2.config( text="You chose scissors and the AI chose paper. You won!")
+        l2.pack()
+    elif input1val == "3" and aiop == 3:
+        l2.config( text="You chose scissors and the AI chose scissors. It's a tie!")
+        l2.pack()
+    else:
+        l2.config( text="Invalid input!", fg="red")
+        l2.pack()
+        l3 = tkinter.Label(sc1, text="1: rock, 2: paper, 3: scissors \n Enter your choice below to play against the AI", fg="red")
+        l3.pack()
+processbutton = tkinter.Button(sc1, text="Play", command=process, bg="lightgreen")
+processbutton.pack()
+l2 = tkinter.Label(sc1,bg="lightblue")
+sc1.mainloop()
