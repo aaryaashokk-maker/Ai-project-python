@@ -1,0 +1,20 @@
+import pandas as pd
+from textblob import TextBlob
+df = pd.read_csv("C:\\Users\\Aarya\\Downloads\\real_movies_300.csv")
+df
+def recommend(Genre,mood,rating):
+  usermood = TextBlob(mood).sentiment.polarity
+  data = df[df['genre'].str.contains(Genre, case = False, na = False)]
+  data = data[data['rating']  >= rating]
+  results = []
+  for _,row in data.iterrows():
+    polofover = TextBlob(str(data['overview'])).sentiment.polarity
+    if polofover >= 0 and usermood >= 0:
+      results.append(row['title'])
+    elif usermood < 0:
+      results.append(row['title'])
+    return results
+mood = input("What mood of movie do you want : ")
+genre = input("What genre do you want : ")
+rating = float(input("What rating do you want out of 10 : "))
+print(recommend(genre,mood,rating))
