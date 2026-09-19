@@ -1,0 +1,10 @@
+import cv2
+image = cv2.imread(r"C:\Users\Aarya\OneDrive\Documents\code\python\IMG_0146.JPG")
+cv2.namedWindow('image', cv2.WINDOW_NORMAL)
+grayimage = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+cv2.imshow('image', grayimage)
+key = cv2.waitKey(0)
+if key == ord('s') and key == 17:
+    cv2.imwrite(r"C:\Users\Aarya\OneDrive\Documents\code\python\IMG_0146_grayimage.jpg", grayimage)
+else:
+    cv2.destroyAllWindows()
