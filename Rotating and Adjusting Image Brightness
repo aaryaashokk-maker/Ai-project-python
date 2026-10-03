@@ -1,0 +1,19 @@
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+image = input("The file location of the image you want to edit: ")
+imagecv2 = cv2.imread(image)
+
+(h,w) = imagecv2.shape[:2]
+centre =  (w//2, h//2)
+howmuchrotate = cv2.getRotationMatrix2D(centre, 90,1.0)
+rotate_image = cv2.warpAffine(imagecv2, howmuchrotate, (w,h))
+rotate_image_rgb = cv2.cvtColor(rotate_image, cv2.COLOR_BGR2RGB)
+plt.imshow(rotate_image_rgb)
+plt.show()
+
+bright = np.ones(imagecv2.shape, dtype="uint8") * 50
+bright_image = cv2.add(imagecv2, bright)
+bright_image_rgb = cv2.cvtColor(bright_image, cv2.COLOR_BGR2RGB)
+plt.imshow(bright_image_rgb)
+plt.show()
