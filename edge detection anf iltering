@@ -1,0 +1,43 @@
+import cv2
+import matplotlib.pyplot as plt
+
+wimage = input("Enter the path of the image: ")
+image1 = cv2.imread(wimage)
+image = cv2.cvtColor(image1,cv2.COLOR_BGR2GRAY)
+
+sobel = cv2.Sobel(image, cv2.CV_64F,1,1,ksize=9)
+canny = cv2.Canny(image,100,200)
+laplacian = cv2.Laplacian(image, cv2.CV_64F)
+
+gaussian = cv2.GaussianBlur(image1,(9,9),0)
+medianblur = cv2.medianBlur(image1,9)
+
+plt.figure(figsize=(12,8))
+plt.subplot(2,3,1)
+
+
+plt.imshow(cv2.cvtColor(image1, cv2.COLOR_BGR2RGB))
+plt.title("Original Image")
+
+plt.subplot(2,3,2)
+plt.imshow(sobel,cmap='gray')
+plt.title("Sobel edge detection")
+
+plt.subplot(2,3,3)
+plt.imshow(canny,cmap='gray')
+plt.title("Canny edge detection")
+
+plt.subplot(2,3,4)
+plt.imshow(laplacian,cmap='gray')
+plt.title("Laplacian edge detection")
+
+plt.subplot(2,3,5)
+plt.imshow(cv2.cvtColor(gaussian, cv2.COLOR_BGR2RGB))
+plt.title("Gaussian Blur")
+
+plt.subplot(2,3,6)
+plt.imshow(cv2.cvtColor(medianblur, cv2.COLOR_BGR2RGB))
+plt.title("Median Blur")
+
+plt.tight_layout()
+plt.show()
