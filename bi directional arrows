@@ -1,0 +1,16 @@
+import cv2
+import matplotlib.pyplot as plt
+
+wimage = input("Enter the path of the image: ")
+image = cv2.imread(wimage)
+width,height,_ = image.shape
+arrowsth = height//2
+arrowwst = width//2
+cv2.arrowedLine(image, (0,arrowsth), (width,arrowsth), (0,0,255), 5)
+cv2.arrowedLine(image, (width,arrowsth), (0,arrowsth), (0,0,225), 5)
+cv2.arrowedLine(image, (arrowwst,0), (arrowwst,height -800), (0,0,255), 5)
+cv2.arrowedLine(image, (arrowwst,height-800),(arrowwst,0), (0,0,255), 5)
+imagergb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+plt.imshow(imagergb)
+plt.show()
+#This is mathematically correct but not visually but i adjusted the height of the vertical arrow to make it visually correct
