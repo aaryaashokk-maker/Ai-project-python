@@ -1,0 +1,53 @@
+import cv2
+import matplotlib.pyplot as plt
+
+def fillter_C(image, name):
+    copy = image.copy()
+    if name == 'bluetint':
+        copy[:,:, 1] = 0
+        copy[:,:, 2] = 0
+    elif name == 'redtint':
+        copy[:,:,0] = 0
+        copy[:,:,1] = 0
+    elif name == 'greentint':
+        copy[:,:,0] = 0
+        copy[:,:,2] = 0
+    elif name == 'increasered':
+        copy[:,:,2] = cv2.add(copy[:,:,2],150)
+    elif name == 'increasegreen':
+        copy[:,:,1] = cv2.add(copy[:,:,1],150)
+    elif name == 'increaseblue':
+        copy[:,:,0] = cv2.add(copy[:,:,0],150)
+    elif name == 'decreasered':
+        copy[:,:,2] = cv2.subtract(copy[:,:,2],150)
+    elif name == 'decreasegreen':
+        copy[:,:,1] = cv2.subtract(copy[:,:,1],150)
+    elif name == 'decreaseblue':
+        copy[:,:,0] = cv2.subtract(copy[:,:,0],150)
+    return copy
+wimage = input("Enter the path of the image: ")
+image = cv2.imread(wimage)
+
+filter = [
+    'original',
+    'bluetint',
+    'redtint',
+    'greentint',
+    'increasered',
+    'increasegreen',
+    'increaseblue',
+    'decreasered',
+    'decreasegreen',
+    'decreaseblue'
+]
+plt.figure(figsize=(10,10))
+
+for i,o in enumerate(filter):
+    if o == 'original':
+        image1 = image
+    else:
+        image1 = fillter_C(image,o)
+    plt.subplot(3,4,i+1)
+    imagergb = cv2.cvtColor(image1, cv2.COLOR_BGR2RGB)
+    plt.imshow(imagergb)
+plt.show()
